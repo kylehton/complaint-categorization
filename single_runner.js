@@ -2,7 +2,7 @@ const { OpenAI } = require('openai');
 
 
 const openai = new OpenAI({
-  apiKey: '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'
+  apiKey: 'key here'
 });
 
 // Load JSON data
