@@ -1,0 +1,69 @@
+[
+
+{"_index": "complaint-public-v2", 
+     "_type": "_doc", 
+     "_id": "9615747", 
+     "_score": null, 
+     "_source": 
+     {
+          "product": "Credit card", 
+          "complaint_what_happened": "XXXX XXXX XXXX XXXX, XXXX  XXXX XXXX, NY XXXX XXXX XXXX Date To : Macys XXXX Inc XXXX XXXX XXXX XXXXXXXX XXXX XXXX, NY XXXX Attn : XXXX XXXX Executive Office Dear XXXX XXXX, My name is XXXX XXXX, and I am writing to address the ongoing issues with my Macys credit account ( Account Number : XXXX ). Despite multiple attempts to resolve these matters over the phone, I have not received the necessary assistance to correct the inaccuracies on my account. \n\nXXXX. Disputed Charge and Lack of Support : I have called Macys customer service many times to dispute a charge of {$31.00} and address other concerns. Each time, the representatives were either unwilling or unable to assist me effectively. Macys should have records of these calls to verify my repeated efforts. \nXXXX. Late Fee : I acknowledge the late fee of {$31.00} charged on XX/XX/year>, and its subsequent credit on XX/XX/year>. However, this does not resolve the main issue of incorrect reporting. \nXXXX Credit Reporting Inaccuracy : My account was reported as 30 days delinquent in XX/XX/year>. I have consistently disputed this information, stating that payments for XXXX and XX/XX/year> were made but not properly applied to my account. \n\nAdditional Impact : Due to this delinquency on my credit report, my auto insurance increased to {$330.00} per month. This has been a significant financial burden. \n\nI request that Macys conduct a comprehensive review, including the phone call records, and correct the inaccuracies on my account. Additionally, I request the removal of the disputed by consumer note from my credit report once the issue is resolved. \n\nAdditionally, I do not want any Macys advertisements sent to my apartment. \n\nI hope to resolve this matter amicably and promptly. Thank you for your attention to this important issue. \n\nSincerely, XXXX XXXX", 
+          "date_sent_to_company": "2024-07-25T12:00:00-05:00", 
+          "issue": "Problem with a purchase shown on your statement", 
+          "sub_product": "Store credit card", 
+          "zip_code": "10701", 
+          "tags": null, 
+          "complaint_id": "9615747", 
+          "timely": "Yes", 
+          "consumer_consent_provided": "Consent provided", 
+          "company_response": "Closed with monetary relief", 
+          "submitted_via": "Web", 
+          "company": "CITIBANK, N.A.", 
+          "date_received": "2024-07-25T12:00:00-05:00", 
+          "state": "NY", 
+          "consumer_disputed": "N/A", 
+          "company_public_response": "Company has responded to the consumer and the CFPB and chooses not to provide a public response", 
+          "sub_issue": "Credit card company isn't resolving a dispute about a purchase on your statement"
+     }, 
+          "sort": [33]
+},
+
+     {"_index": "complaint-public-v2", 
+     "_type": "_doc", 
+     "_id": "9005055", 
+     "_score": null, 
+     "_source": 
+          {
+               "product": "Credit card", 
+               "complaint_what_happened": "Timely payments are always a priority for me, and I am certain about this. However, I am unsure why this company is reporting me as late in certain months, which should not be the case. According to USC 1666b, any billing error should be corrected, or they will be liable to pay me {$1000.00} for each account reporting inaccurately.", 
+               "date_sent_to_company": "2024-05-14T12:00:00-05:00", 
+               "issue": "Problem with a company's investigation into an existing problem", 
+               "sub_product": "General-purpose credit card or charge card", 
+               "zip_code": "37042", 
+               "tags": null, 
+               "complaint_id": "9005055", 
+               "timely": "Yes", 
+               "consumer_consent_provided": "Consent provided", 
+               "company_response": "Closed with explanation", 
+               "submitted_via": "Web", 
+               "company": "EQUIFAX, INC.", 
+               "date_received": "2024-05-14T12:00:00-05:00", 
+               "state": "TN", 
+               "consumer_disputed": "N/A", 
+               "company_public_response": null, 
+               "sub_issue": "Their investigation did not fix an error on your report"
+          }, 
+               "sort": [40]
+     },
+
+     {"_index": "complaint-public-v2", "_type": "_doc", "_id": "9154222", "_score": null, "_source": {"product": "Credit card", "complaint_what_happened": "I never miss a payment. I am certain of this. I dont get why this company is marking me late for some months. USC 1666b states that billing errors should be corrected and shown as paid on time.", "date_sent_to_company": "2024-06-02T12:00:00-05:00", "issue": "Problem with a company's investigation into an existing problem", "sub_product": "General-purpose credit card or charge card", "zip_code": "77041", "tags": null, "complaint_id": "9154222", "timely": "Yes", "consumer_consent_provided": "Consent provided", "company_response": "Closed with explanation", "submitted_via": "Web", "company": "Experian Information Solutions Inc.", "date_received": "2024-06-02T12:00:00-05:00", "state": "TX", "consumer_disputed": "N/A", "company_public_response": "Company has responded to the consumer and the CFPB and chooses not to provide a public response", "sub_issue": "Their investigation did not fix an error on your report"}, "sort": [128]},
+     
+     {"_index": "complaint-public-v2", "_type": "_doc", "_id": "9157176", "_score": null, "_source": {"product": "Credit card", "complaint_what_happened": "I purchased a XXXX XXXX XXXX XXXX on XX/XX/XXXX, using my TD BANK XXXX XXXX credit account. Phone was supposed to be delivered XX/XX/XXXX. Instead I get a delivery delayed notice. I contact XXXX and they tell me they will not ship the phone because XXXXXXXX XXXX was not authorizing the transaction. I reached out to XXXXXXXX XXXX and waited in cues a total of over 6 hours only to be hung up on 2 times. I also emailed their listed customer service department seeking help, because once I logged into my account not only did I find that they did authorize the transaction on XX/XX/XXXX, they authorized it again on XX/XX/XXXX. My current card balance is sitting at double, so {$2400.00}. But even with proof that the transaction is complete, XXXX is not releasing the product I was charged for twice.", "date_sent_to_company": "2024-06-04T12:00:00-05:00", "issue": "Problem with a purchase shown on your statement", "sub_product": "Store credit card", "zip_code": "385XX", "tags": null, "complaint_id": "9157176", "timely": "Yes", "consumer_consent_provided": "Consent provided", "company_response": "Closed with monetary relief", "submitted_via": "Web", "company": "TD BANK US HOLDING COMPANY", "date_received": "2024-06-01T12:00:00-05:00", "state": "TN", "consumer_disputed": "N/A", "company_public_response": null, "sub_issue": "Overcharged for something you did purchase with the card"}, "sort": [203]},
+     
+     {"_index": "complaint-public-v2", "_type": "_doc", "_id": "9628394", "_score": null, "_source": {"product": "Credit card", "complaint_what_happened": "Citi Bank has closed all my credit cards with them which includes my two Home Depot credit cards, Macys amex card, and Citi world elite master card. Citi banks explanation for closing my accounts was \" shows you have too many open revolving credit accounts '' This is a false cause because I have not had any new accounts for over 3 years and I don't have that many accounts. My credit has been exactly the same for the past 4 years and I have been with citi since 2017 and have never missed a payment nor any delinquencies. My credit is over an XXXX score and I don't have any lates or discrepancies. Citi has been recently fined by the cfpb for closing bank accounts for XXXX  people with last name ending in XXXX or XXXX. I am a victim of this XXXX. I will move forward with a lawyer if citi does not re open my accounts because this is XXXX  and discrimination just because I am an XXXX. I have had credit for over 20 years and never had a bank close my accounts ever. I have wonderful credit which I have proof of. Citi bank must reopen all my account I have had years of wonderful credit history with them and never gave a reason for an account closure. The only explanation as my lawyer said was me being XXXX. Please help me.", "date_sent_to_company": "2024-07-26T12:00:00-05:00", "issue": "Closing your account", "sub_product": "General-purpose credit card or charge card", "zip_code": "91504", "tags": null, "complaint_id": "9628394", "timely": "Yes", "consumer_consent_provided": "Consent provided", "company_response": "Closed with explanation", "submitted_via": "Web", "company": "CITIBANK, N.A.", "date_received": "2024-07-26T12:00:00-05:00", "state": "CA", "consumer_disputed": "N/A", "company_public_response": "Company has responded to the consumer and the CFPB and chooses not to provide a public response", "sub_issue": "Company closed your account"}, "sort": [211]},
+     
+     {"_index": "complaint-public-v2", "_type": "_doc", "_id": "9636443", "_score": null, "_source": {"product": "Credit card", "complaint_what_happened": "The following account is hurting my credit rating, credit standing, and credit capacity Wells Fargo [ Account # XXXX ]. Pursuant to section 623 ( b ) ( 1 ) ( E ) ( ii ) I am demanding that this agency removes this account from all of my consumer reports as it is inaccurate, incomplete, and/or unverifiable. This account was removed from a consumer reporting agency because it did not comply with the FCRA therefore as a supporting documentation, your agency now has a reasonable cause to believe that the furnished information is inaccurate and must be permanently removed from my consumer reports.", "date_sent_to_company": "2024-07-27T12:00:00-05:00", "issue": "Improper use of your report", "sub_product": "General-purpose credit card or charge card", "zip_code": "96793", "tags": null, "complaint_id": "9636443", "timely": "Yes", "consumer_consent_provided": "Consent provided", "company_response": "Closed with non-monetary relief", "submitted_via": "Web", "company": "WELLS FARGO & COMPANY", "date_received": "2024-07-27T12:00:00-05:00", "state": "HI", "consumer_disputed": "N/A", "company_public_response": "Company has responded to the consumer and the CFPB and chooses not to provide a public response", "sub_issue": "Reporting company used your report improperly"}, "sort": [1150]},
+     
+     {"_index": "complaint-public-v2", "_type": "_doc", "_id": "9496999", "_score": null, "_source": {"product": "Credit card", "complaint_what_happened": "I have a credit card through Best Buy Citi Bank that had fraud charges on the card. I was contacted by the Fraud Department and told to place a special name number etc. on my account so the fraud people accessing my account could no longer access the account. So I did that. And again the people in the same state are being allowed to access my account. Best Buy Citi Bank Customer Service did not protect me from fraud and again allowed fraudulent people to access my account. The specialized word or password which should have never been bypassed was bypassed. The fraud people changed my address, phone numbers and email. The Citi Bank Customer Service are not honoring my privacy and continually allow the fraud people to use my account without my permission.", "date_sent_to_company": "2024-07-19T12:00:00-05:00", "issue": "Other features, terms, or problems", "sub_product": "General-purpose credit card or charge card", "zip_code": "XXXXX", "tags": null, "complaint_id": "9496999", "timely": "Yes", "consumer_consent_provided": "Consent provided", "company_response": "Closed with monetary relief", "submitted_via": "Web", "company": "CITIBANK, N.A.", "date_received": "2024-07-12T12:00:00-05:00", "state": "NM", "consumer_disputed": "N/A", "company_public_response": "Company has responded to the consumer and the CFPB and chooses not to provide a public response", "sub_issue": "Problem with customer service"}, "sort": [1189]}
+]
+
