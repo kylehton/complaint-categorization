@@ -6,7 +6,7 @@ const path = require('path');
 
 // Initialize OpenAI client
 const client = new OpenAI({
-     apiKey: 'process.env.OPENAI_API_KEY'
+     apiKey: process.env.OPENAI_API_KEY
 });
 
 // Function to perform OpenAI API request
@@ -15,7 +15,7 @@ async function OpenAIChatCompletion(prompt) {
         const response = await client.chat.completions.create({
             messages: [{ role: 'user', content: prompt }],
             model: 'gpt-3.5-turbo', // using the GPT-3.5-turbo model to maximize token usage for large JSON file
-            max_tokens: 50, //limits token usage to 50 per API call since each JSON file does not have a lot of data, just in case of misuse of tokens
+            max_tokens: 100, //limits token usage to 100 per API call to prevent overuse, but enough to generate good responses
             temperature: 0.0,// low temp variability to minimize varietal results, especially for sub-categorization (so more of them are categorized as similarly as possible)
         });
         return response.choices[0].message.content.trim();
