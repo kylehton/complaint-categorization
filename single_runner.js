@@ -2,7 +2,7 @@ const { OpenAI } = require('openai');
 
 
 const openai = new OpenAI({
-  apiKey: 'key here'
+  apiKey: ''
 });
 
 // Load JSON data
