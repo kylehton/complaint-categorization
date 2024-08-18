@@ -15,7 +15,7 @@ async function OpenAIChatCompletion(prompt) {
         const response = await client.chat.completions.create({
             messages: [{ role: 'user', content: prompt }],
             model: 'gpt-3.5-turbo', // using the GPT-3.5-turbo model to maximize token usage for large JSON file
-            max_tokens: 100, //limits token usage to 100 per API call to prevent overuse, but enough to generate good responses
+            max_tokens: 115, //limits token usage to 100 per API call to prevent overuse, but enough to generate good responses
             temperature: 0.0,// low temp variability to minimize varietal results, especially for sub-categorization (so more of them are categorized as similarly as possible)
         });
         return response.choices[0].message.content.trim();
@@ -54,10 +54,11 @@ async function summarizeData(data) {
 }
 
 // Read JSON file and process data
-async function processJsonFile() {
-    const filePath = path.resolve(__dirname, 'ruby_hackathon.json');
+//Main function, which is run below
+async function processJsonFile(fileToRead) {
+    const filePath = path.resolve(__dirname, fileToRead); //retrives the JSON file from the same directory
     try {
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8')); //parses data in standard alphanumerical charset
+        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8')); //parses data by JSON object in standard alphanumerical charset
         for (const item of data) { //loops through all the individual complaint items in the JSON file
                console.log(await isItAComplaint(item)); // Yes/No Complaint Categorization function
                console.log(await categorizeData(item)); // Data sub categorization function
@@ -69,5 +70,7 @@ async function processJsonFile() {
 }
 
 // Main function
-//
-processJsonFile();
+/*----------------*/
+readThis = "ruby_hackathon.json" //enter file to read, parse, and process here
+processJsonFile(readThis); //using parameter so it can be configured to read any file with easy input
+/*----------------*/
