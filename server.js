@@ -25,7 +25,7 @@ const openai = new OpenAI({
 });
 
 const pinecone = new Pinecone({
-    apiKey: 'ffbb6c88-5caa-4e64-8f16-467036219a71'
+    apiKey: process.env.PINECONE_API_KEY
 });
 let pineconeIndex;
 
