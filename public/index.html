@@ -66,23 +66,23 @@
             <label for="product">Product:</label>
             <input type="text" id="product" name="product" required>
 
-            <label for="subProduct">Sub-product:</label>
+            <label for="subProduct">Sub-product (optional):</label>
             <input type="text" id="subProduct" name="sub_product">
 
             <label for="issue">Issue:</label>
             <input type="text" id="issue" name="issue" required>
 
-            <label for="subIssue">Sub-issue:</label>
+            <label for="subIssue">Sub-issue (optional):</label>
             <input type="text" id="subIssue" name="sub_issue">
 
-            <label for="state">State:</label>
-            <input type="text" id="state" name="state" required>
+            <label for="state">State (2-letter code) (optional):</label>
+            <input type="text" id="state" name="state" maxlength="2" pattern="[A-Za-z]{2}" title="Two letter state code">
 
             <label for="zipCode">ZIP Code:</label>
             <input type="text" id="zipCode" name="zip_code" required>
 
-            <label for="complaintText">Complaint Details:</label>
-            <textarea id="complaintText" name="complaint_what_happened" rows="5" required></textarea>
+            <label for="complaint_what_happened">Complaint Details:</label>
+            <textarea id="complaint_what_happened" name="complaint_what_happened" required></textarea>
 
             <button type="submit">Submit Complaint</button>
         </form>
@@ -98,7 +98,9 @@
             e.preventDefault();
             const formData = new FormData(e.target);
             const complaint = Object.fromEntries(formData);
-
+    
+            console.log('Submitting complaint:', complaint);
+    
             try {
                 const response = await fetch('/api/complaints', {
                     method: 'POST',
@@ -107,28 +109,37 @@
                     },
                     body: JSON.stringify(complaint),
                 });
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Server responded with ${response.status}: ${errorText}`);
+                }
                 const result = await response.json();
+                console.log('Submission successful:', result);
                 alert('Complaint submitted successfully!');
                 
-                // Fetch similar complaints
-                const similarResponse = await fetch(`/api/complaints/similar?text=${encodeURIComponent(complaint.complaint_what_happened)}&topK=3`);
+                // Fetch similar complaints, excluding the current one
+                const similarResponse = await fetch(`/api/complaints/similar?text=${encodeURIComponent(complaint.complaint_what_happened)}&topK=4&currentComplaintId=${result.complaintId}`);
                 const similarComplaints = await similarResponse.json();
                 displaySimilarComplaints(similarComplaints);
             } catch (error) {
                 console.error('Error:', error);
-                alert('An error occurred while submitting the complaint.');
+                alert(`An error occurred while submitting the complaint: ${error.message}`);
             }
         });
-
+    
         function displaySimilarComplaints(complaints) {
             const list = document.getElementById('similarComplaintsList');
-            list.innerHTML = complaints.map(complaint => `
-                <div>
-                    <h3>${complaint.metadata.company} - ${complaint.metadata.product}</h3>
-                    <p>${complaint.metadata.summary}</p>
-                    <p>Similarity: ${(complaint.score * 100).toFixed(2)}%</p>
-                </div>
-            `).join('');
+            if (complaints.length === 0) {
+                list.innerHTML = '<p>No similar complaints found.</p>';
+            } else {
+                list.innerHTML = complaints.map(complaint => `
+                    <div>
+                        <h3>${complaint.metadata.company} - ${complaint.metadata.product}</h3>
+                        <p>${complaint.metadata.summary}</p>
+                        <p>Similarity: ${(complaint.score * 100).toFixed(2)}%</p>
+                    </div>
+                `).join('');
+            }
         }
     </script>
 </body>

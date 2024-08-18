@@ -72,6 +72,8 @@ async function insertProduct(name) {
 }
 
 async function insertComplaint(data, companyId, productId, summary) {
+    const complaintId = data.complaint_id || `COMP-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
     const query = `
         INSERT INTO complaints (
             complaint_id, date_received, product_id, sub_product, issue, sub_issue, 
@@ -81,19 +83,19 @@ async function insertComplaint(data, companyId, productId, summary) {
         RETURNING id`;
     
     const values = [
-        data.complaint_id,
+        complaintId,
         new Date(),
         productId,
-        data.sub_product,
-        data.issue,
-        data.sub_issue,
+        data.sub_product || null,
+        data.issue || null,
+        data.sub_issue || null,
         companyId,
-        data.state,
-        data.zip_code,
-        data.submitted_via,
-        data.company_response,
-        data.timely,
-        data.consumer_disputed,
+        (data.state || '').substring(0, 2),  // Trim state to 2 characters
+        data.zip_code || null,
+        data.submitted_via || 'Web',
+        data.company_response || 'Pending',
+        data.timely || 'Yes',
+        data.consumer_disputed || 'N/A',
         data.complaint_what_happened,
         summary
     ];
@@ -117,13 +119,25 @@ async function summarizeData(data) {
 app.post('/api/complaints', async (req, res) => {
     try {
         const complaint = req.body;
+        console.log('Received complaint:', JSON.stringify(complaint, null, 2));
+
+        // Validate required fields
+        const requiredFields = ['company', 'product', 'complaint_what_happened'];
+        const missingFields = requiredFields.filter(field => !complaint[field]);
+        
+        if (missingFields.length > 0) {
+            console.log('Missing required fields:', missingFields);
+            return res.status(400).json({ error: `Missing required fields: ${missingFields.join(', ')}` });
+        }
+
         const companyId = await insertCompany(complaint.company);
         const productId = await insertProduct(complaint.product);
         
         const summary = await summarizeData(complaint);
-        console.log(`Summary: ${summary}`);
+        console.log('Generated summary:', summary);
         
         const complaintId = await insertComplaint(complaint, companyId, productId, summary);
+        console.log('Inserted complaint, ID:', complaintId);
         
         const embedding = await getEmbedding(complaint.complaint_what_happened);
         await upsertToPinecone(pineconeIndex, complaintId.toString(), embedding, {
@@ -136,18 +150,21 @@ app.post('/api/complaints', async (req, res) => {
         res.status(201).json({ message: 'Complaint processed successfully', complaintId });
     } catch (error) {
         console.error('Error processing complaint:', error);
-        res.status(500).json({ error: 'An error occurred while processing the complaint' });
+        res.status(500).json({ error: 'An error occurred while processing the complaint', details: error.message });
     }
 });
 
 app.get('/api/complaints/similar', async (req, res) => {
     try {
-        const { text, topK } = req.query;
+        const { text, topK, currentComplaintId } = req.query;
         const embedding = await getEmbedding(text);
         const similarComplaints = await queryPinecone(pineconeIndex, embedding, parseInt(topK) || 5);
         
+        // Filter out the current complaint if it's in the results
+        const filteredComplaints = similarComplaints.filter(complaint => complaint.id !== currentComplaintId);
+
         // Fetch full complaint details from PostgreSQL
-        const complaintDetails = await Promise.all(similarComplaints.map(async (match) => {
+        const complaintDetails = await Promise.all(filteredComplaints.map(async (match) => {
             const { rows } = await pool.query('SELECT * FROM complaints WHERE id = $1', [match.id]);
             return { ...match, details: rows[0] };
         }));
@@ -158,7 +175,6 @@ app.get('/api/complaints/similar', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while finding similar complaints' });
     }
 });
-
 // Test route
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
