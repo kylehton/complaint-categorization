@@ -4,7 +4,7 @@ const path = require('path');
 
 // Initialize OpenAI client
 const client = new OpenAI({
-     apiKey: 'key here'
+     apiKey: ''
 });
 
 // Function to perform OpenAI API request
