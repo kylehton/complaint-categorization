@@ -2,7 +2,7 @@ const { OpenAI } = require('openai');
 
 
 const openai = new OpenAI({
-  apiKey: ''
+  apiKey: 'process.env.OPENAI_API_KEY'
 });
 
 // Load JSON data

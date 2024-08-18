@@ -1,10 +1,12 @@
+require('dotenv').config();
+
 const { OpenAI } = require('openai');
 const fs = require('fs');
 const path = require('path');
 
 // Initialize OpenAI client
 const client = new OpenAI({
-     apiKey: ''
+     apiKey: 'process.env.OPENAI_API_KEY'
 });
 
 // Function to perform OpenAI API request
@@ -12,9 +14,9 @@ async function OpenAIChatCompletion(prompt) {
     try {
         const response = await client.chat.completions.create({
             messages: [{ role: 'user', content: prompt }],
-            model: 'gpt-3.5-turbo', // or use 'gpt-4' if available
-            max_tokens: 100,
-            temperature: 0.0,
+            model: 'gpt-3.5-turbo', // using the GPT-3.5-turbo model to maximize token usage for large JSON file
+            max_tokens: 50, //limits token usage to 50 per API call since each JSON file does not have a lot of data, just in case of misuse of tokens
+            temperature: 0.0,// low temp variability to minimize varietal results, especially for sub-categorization (so more of them are categorized as similarly as possible)
         });
         return response.choices[0].message.content.trim();
     } catch (error) {
@@ -23,9 +25,9 @@ async function OpenAIChatCompletion(prompt) {
     }
 }
 
-// Function to categorize data
+// Function to categorize whether it is complaint or not using OpenAI API
 async function isItAComplaint(data) {
-    console.log(`Id: ${data['_id']}`);
+    console.log(`ID: ${data['_id']}`);
     if (data && data._source) {
         const complaintText = data._source.complaint_what_happened || 'Unidentifiable';
         const prompt = `Is the following text a complaint? Answer in 'Yes' or 'No'\n\n${complaintText}`;
@@ -33,6 +35,7 @@ async function isItAComplaint(data) {
     }
 }
 
+// Function to categorize data based on issue using OpenAI API
 async function categorizeData(data) {
      if (data && data._source) {
          const complaintText = data._source.issue || 'No complaint text available';
@@ -41,7 +44,7 @@ async function categorizeData(data) {
      }
  }
 
-// Function to summarize data
+// Function to summarize complaint contents using OpenAI API
 async function summarizeData(data) {
     if (data && data._source) {
         const complaintText = data._source.complaint_what_happened || 'No summary';
@@ -54,16 +57,17 @@ async function summarizeData(data) {
 async function processJsonFile() {
     const filePath = path.resolve(__dirname, 'ruby_hackathon.json');
     try {
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-        for (const item of data) {
-               console.log(await isItAComplaint(item));
-               console.log(await categorizeData(item));
-               console.log(await summarizeData(item));
+        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8')); //parses data in standard alphanumerical charset
+        for (const item of data) { //loops through all the individual complaint items in the JSON file
+               console.log(await isItAComplaint(item)); // Yes/No Complaint Categorization function
+               console.log(await categorizeData(item)); // Data sub categorization function
+               console.log(await summarizeData(item)); // Data summarization function
         }
     } catch (error) {
         console.error('Error reading or processing JSON file:', error);
     }
 }
 
-// Run the function
+// Main function
+//
 processJsonFile();
