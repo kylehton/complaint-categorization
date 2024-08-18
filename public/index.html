@@ -4,50 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complaint Submission System</title>
+    <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Lexend', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
+
+            background-color: #48505D;
         }
+        
         .container {
             max-width: 800px;
             margin: auto;
-            background: white;
+            background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
             padding: 20px;
+            padding-left: 30px;
+            padding-right: 30px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+
+
         h1 {
-            color: #333;
+            color: white;
+            font-size: 50px;
             text-align: center;
+            padding-bottom: 40px;
+            font-style: bold;
+        }
+        h2 {
+            text-align: center;
+            color: white;
+            font-size: 30px;
         }
         form {
             display: grid;
             gap: 10px;
         }
         label {
-            font-weight: bold;
+            color: white;
         }
-        input[type="text"], input[type="email"], textarea, select {
+        input[type="text"], textarea, select {
+            color: white;
             width: 100%;
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            background: rgba(255, 255, 255, 0.25); /* Semi-transparent white background */
         }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none; /* Remove the default outline */
+            border: 1px solid #ddd; /* Optional: ensure border is visible */
+        }
+
         button {
-            background-color: #4CAF50;
+            margin-top: 10px;
+            background-color: rgba(255, 255, 255, 0.1); 
             color: white;
             padding: 10px 15px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            width: 100%;
         }
         button:hover {
             background-color: #45a049;
+            opacity: 0.8;
         }
         #similarComplaints {
             margin-top: 20px;
@@ -57,34 +88,35 @@
     </style>
 </head>
 <body>
+    <h1>Grievance Guru</h1>
     <div class="container">
-        <h1>Complaint Submission Form</h1>
+        <h2>Submit a Complaint</h2>
         <form id="complaintForm">
-            <label for="company">Company:</label>
+            <label for="company">Company</label>
             <input type="text" id="company" name="company" required>
 
-            <label for="product">Product:</label>
+            <label for="product">Product</label>
             <input type="text" id="product" name="product" required>
 
-            <label for="subProduct">Sub-product (optional):</label>
+            <label for="subProduct">Sub-product (optional)</label>
             <input type="text" id="subProduct" name="sub_product">
 
-            <label for="issue">Issue:</label>
+            <label for="issue">Issue</label>
             <input type="text" id="issue" name="issue" required>
 
-            <label for="subIssue">Sub-issue (optional):</label>
+            <label for="subIssue">Sub-issue (optional)</label>
             <input type="text" id="subIssue" name="sub_issue">
 
-            <label for="state">State (2-letter code) (optional):</label>
+            <label for="state">State (2-letter code) (optional)</label>
             <input type="text" id="state" name="state" maxlength="2" pattern="[A-Za-z]{2}" title="Two letter state code">
 
-            <label for="zipCode">ZIP Code:</label>
+            <label for="zipCode">ZIP Code</label>
             <input type="text" id="zipCode" name="zip_code" required>
 
-            <label for="complaint_what_happened">Complaint Details:</label>
+            <label for="complaint_what_happened">Complaint Details</label>
             <textarea id="complaint_what_happened" name="complaint_what_happened" required></textarea>
 
-            <button type="submit">Submit Complaint</button>
+            <button type="submit">Submit</button>
         </form>
 
         <div id="similarComplaints">
