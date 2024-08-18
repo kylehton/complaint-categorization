@@ -4,10 +4,10 @@ const fs = require('fs');
 const path = require('path');
 const { Pool } = require('pg');
 
-const client = new OpenAI({
+/*const client = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
-
+*/
 const pool = new Pool({
     user: process.env.PG_USER,
     host: process.env.PG_HOST,
