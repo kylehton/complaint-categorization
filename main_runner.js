@@ -15,7 +15,7 @@ async function OpenAIChatCompletion(prompt) {
         const response = await client.chat.completions.create({
             messages: [{ role: 'user', content: prompt }],
             model: 'gpt-3.5-turbo', // using the GPT-3.5-turbo model to maximize token usage for large JSON file
-            max_tokens: 115, //limits token usage to 100 per API call to prevent overuse, but enough to generate good responses
+            max_tokens: 115, //limits token usage to 115 per API call to prevent overuse, but enough to generate good responses
             temperature: 0.0,// low temp variability to minimize varietal results, especially for sub-categorization (so more of them are categorized as similarly as possible)
         });
         return response.choices[0].message.content.trim();
@@ -30,7 +30,7 @@ async function isItAComplaint(data) {
     console.log(`ID: ${data['_id']}`);
     if (data && data._source) {
         const complaintText = data._source.complaint_what_happened || 'Unidentifiable';
-        const prompt = `Is the following text a complaint? Answer in 'Yes' or 'No'\n\n${complaintText}`;
+        const prompt = `Does the following text qualify as a complaint? Provide a 'Yes' or 'No' answer:\n\n${complaintText}`;
         return await OpenAIChatCompletion(prompt);
     }
 }
